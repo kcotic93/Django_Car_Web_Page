@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+   <head>
+      <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+      <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
+      <link rel="stylesheet" href="{% static 'css/Footer-white.css' %}" type="text/css" />
+      {% block head %}
+      <title></title>
+      {% endblock %}
+   </head>
+
+   <body>
+      <nav class="navbar navbar-default navbar-fixed-top">
+         <div class="container-fluid">
+            <div class="navbar-header">
+               <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+               <span class="sr-only">Toggle navigation</span>
+               <span class="icon-bar"></span>
+               <span class="icon-bar"></span>
+               <span class="icon-bar"></span>
+               </button>
+               <a class="navbar-brand" href="{% url 'welcome'%}">Auto Baza</a>
+            </div>
+            <div id="navbar" class="navbar-collapse collapse">
+               <ul class="nav navbar-nav">
+                  {% if user.is_authenticated %}
+                  <li class="active"><a href="{% url "ispisi" %}"> Automobili</a></li>
+                  {% endif %}
+                  {% if user.is_authenticated %}
+                  <li><a href="{% url "search" %}"> Pretraži automobile</a></li>
+                  {% endif %} 
+               </ul>
+               <ul class="nav navbar-nav navbar-right">
+                  {% if user.is_authenticated %}
+                  <li class="active"><a href="./">{{user}} <span class="sr-only">(current)</span></a></li>
+                  {% endif %}
+                  {% if user.is_authenticated %}
+                  <li><a href="{% url 'change_password'%}"> Change password</a></li>
+                  {% endif %}
+                  {% if user.is_authenticated %}
+                  <li><a href="{% url 'logout'%}"> Logout</a></li>
+                  {% else %}
+                  <li><a href="{% url 'login'%}"> Login</a></li>
+                  <li><a href="{% url "signup" %}">Signup</a></li>
+                  {% endif %}
+               </ul>
+            </div>
+            <!--/.nav-collapse -->
+         </div>
+         <!--/.container-fluid -->
+      </nav>
+      <div class="content" style="padding-top: 80px;">
+      
+         {% block body %}
+         <title></title>
+         {% endblock %}
+         
+      </div>
+      
+      <footer id="myFooter">
+         <div class="container">
+            <ul>
+               <li><a href="#">Company Information</a></li>
+               <li><a href="#">Contact us</a></li>
+               <li><a href="#">Reviews</a></li>
+               <li><a href="#">Terms of service</a></li>
+            </ul>
+            <p class="footer-copyright">© 2018 Kristijan Čotić</p>
+         </div>
+         <div class="footer-social">
+            <a href="#" class="social-icons"><i class="fa fa-facebook"></i></a>
+            <a href="#" class="social-icons"><i class="fa fa-google-plus"></i></a>
+            <a href="#" class="social-icons"><i class="fa fa-twitter"></i></a>
+         </div>
+      </footer>
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+      <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+      
+   </body>
+
+</html>

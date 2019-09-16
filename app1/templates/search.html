@@ -1,0 +1,95 @@
+{% extends 'base.html' %}
+
+{% block body %}
+
+
+<form class="navbar-form navbar-left" role="search">
+	<div class="form-group">
+  		<form action="{% url 'search'%}"method="GET">
+		<input name="q" value="{{request.GET.q}}">	
+  	</div>
+  	<button type="submit" class="btn btn-default">Search</button>
+  	</form>
+</form>
+<br><br><br><br>
+
+<div class="container" style="width: 100%">
+	{% for r in Results1 %}
+		{% if r.ime %}
+		<div class="col-sm-offset-1">
+		<h1>Proizvođač:</h1> <br> <br>
+		</div>
+		<div class="col-sm-offset-1">
+			<div class="row">
+		 		<div class="col-sm-6 col-md-3">
+		    		<div class="thumbnail">
+		      			<img src="{{r.logo}}" width="100" height="100">
+		      			<div class="caption">
+		        		<h3>{{ r.ime}}</h3>
+		        		<p>{{ r.web_stranica}}</p>
+		        
+		      			</div>
+		    		</div>
+		  		</div>
+			</div>
+		</div>
+
+		<br> 
+		<div class="col-sm-offset-1">
+			<h1>Modeli:</h1><br><br>
+		</div>
+
+			<div class="col-sm-offset-1">
+				<div class="row">
+					{% for c in Results2 %}
+				
+				
+				  	<div class="col-sm-6 col-md-3">
+				    	<div class="thumbnail">
+				      		<img src="{{c.slika}}" width="100" height="100">
+				      		<div class="caption">
+				        	<h3>{{c.tip}}: {{c.verzija}}</h3>
+				        	<p>{{c.godina_proizvodnje}}</p>
+				        
+				      		</div>
+				    	</div>
+				  	</div>
+				
+				
+					{% cycle "" "</div><div class='row'>" %}	
+					{% endfor %}
+				</div>
+			</div>
+		{% endif %}
+		
+	{% endfor %}
+	
+
+	{% for r in Results3 %}
+		{% if r.ime %}
+		<div class="col-sm-offset-1">
+			<div class="row">
+				{% for c in Results4 %}
+
+				<div class="col-sm-6 col-md-3">
+					<div class="thumbnail">
+				    	<img src="{{c.slika}}" width="100" height="100">
+				      	<div class="caption">
+				      	<h3>Marka: {{r.ime}}</h3>
+				        <h3>{{c.tip}}: {{c.verzija}}</h3>
+				        <p>{{c.godina_proizvodnje}}</p>
+				        
+				      	</div>
+				    </div>
+				</div>
+
+				{% cycle "" "</div><div class='row'>" %}
+					
+				{% endfor %}
+			</div>	
+		</div>		
+		{% endif %}
+		
+	{% endfor %}
+</div>	
+{% endblock %}	

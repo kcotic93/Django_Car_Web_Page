@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block body %}
+
+	<form action="{% url 'login' %}" method="POST">
+
+		{{form}}
+		{% csrf_token %} 
+		
+		<input type="hidden" name="next" value="{{next}}"/>
+		<input type="submit" value="Login" name="submit">
+	
+	</form>
+{% endblock %}
+

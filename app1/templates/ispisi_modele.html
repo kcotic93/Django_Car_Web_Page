@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block body %}
+
+<div class="container" style="width: 100%">
+<div class="col-sm-offset-3">
+<div class="row">
+
+{% for model in Modeli %}
+
+  
+    <div class="col-sm-6 col-md-4">
+      <div class="thumbnail">
+        <img src="{{ model.slika}}" width="150" height="100">
+        <div class="caption">
+          <h3>{{ model.tip}}: {{ model.verzija}} </h3>
+          <p>{{ model.godina_proizvodnje}}</p>
+          <p><a href="{% url "update_mod" model.id %}" class="btn btn-primary" role="button">Update</a> <a href="{% url "delete_mod" model.id %}" class="btn btn-default" role="button">Delete</a>
+        </div>
+      </div>
+    </div>
+  {% cycle "" "</div><div class='row'>" %}
+{% endfor %}
+</div>
+</div>
+<div class="col-sm-offset-3">
+  <a href="{% url "unos_model" %}" class="btn btn-primary" role="button">Unesi još modela</a>
+</div>
+</div>
+{% endblock %}
